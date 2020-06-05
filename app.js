@@ -1,7 +1,7 @@
 $(document).ready(function () {
   console.log("ready!");
-  $("#form-button").click(function (e) {
+  $("#form-stuff").submit(function (e) {
     e.preventDefault();
-    alert("Handler for .click() called.");
+    console.log($("#target-revenue").val());
   });
 });
