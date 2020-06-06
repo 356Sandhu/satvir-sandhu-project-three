@@ -34,10 +34,10 @@ label {
 }
 
 form {
-  margin-top: 3rem;
+  margin-top: 4rem;
 
   fieldset {
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
     display: flex;
     align-items: center;
   }
@@ -48,13 +48,43 @@ form {
     font-size: 2rem;
     padding: 0 2rem;
     height: 4rem;
+
+    font-weight: 300;
     color: $secondary-light;
     background-color: $secondary-dark;
     border: none;
     appearance: none;
   }
 
+  .select-container {
+    position: relative;
+  }
+
+  .select-container::after {
+    content: "\f107";
+    font-family: "fontawesome";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 2rem;
+    transform: translateY(-50%);
+
+    color: white;
+  }
+
+  input {
+    -moz-appearance: textfield;
+  }
+
   button {
-    margin-top: 3rem;
+    margin-top: 4rem;
+    width: 15rem;
+    height: 5rem;
+    background-color: $accent-color;
+    border: none;
+    border-radius: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
   }
 }

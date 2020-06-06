@@ -366,11 +366,11 @@ label {
 }
 
 form {
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 form fieldset {
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -385,6 +385,7 @@ form select {
   font-size: 2rem;
   padding: 0 2rem;
   height: 4rem;
+  font-weight: 300;
   color: #f4f4f4;
   background-color: #353440;
   border: none;
@@ -393,6 +394,34 @@ form select {
           appearance: none;
 }
 
+form .select-container {
+  position: relative;
+}
+
+form .select-container::after {
+  content: "\f107";
+  font-family: "fontawesome";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 2rem;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: white;
+}
+
+form input {
+  -moz-appearance: textfield;
+}
+
 form button {
-  margin-top: 3rem;
+  margin-top: 4rem;
+  width: 15rem;
+  height: 5rem;
+  background-color: #f1ae12;
+  border: none;
+  border-radius: 50px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
 }
