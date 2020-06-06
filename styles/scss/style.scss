@@ -14,20 +14,47 @@ body {
 .wrapper {
   width: 1600px;
   margin: 0 auto;
-  background: blue;
 }
 
 h1 {
   font-family: "Playfair Display", serif;
-  font-size: 7rem;
+  font-size: 10rem;
   font-weight: 700;
   line-height: 90%;
+  letter-spacing: 4%;
   color: $primary-light;
-  max-width: 54rem;
+  max-width: 70%;
+  margin-top: 3rem;
 }
 
 label {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 300;
   color: $secondary-light;
+}
+
+form {
+  margin-top: 3rem;
+
+  fieldset {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  input,
+  select {
+    margin-left: 1rem;
+    font-size: 2rem;
+    padding: 0 2rem;
+    height: 4rem;
+    color: $secondary-light;
+    background-color: $secondary-dark;
+    border: none;
+    appearance: none;
+  }
+
+  button {
+    margin-top: 3rem;
+  }
 }
