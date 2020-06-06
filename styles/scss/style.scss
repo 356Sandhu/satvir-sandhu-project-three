@@ -1,3 +1,26 @@
+@import "setup";
+
+$primary-dark: #25242e;
+$secondary-dark: #353440;
+$primary-light: #f7efee;
+$secondary-light: #f4f4f4;
+$accent-color: #f1ae12;
+
 body {
-  background: blue;
+  background-color: $primary-dark;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 7rem;
+  font-weight: bold;
+  line-height: 90%;
+  color: $primary-light;
+}
+
+label {
+  font-size: 3rem;
+  font-weight: light;
+  color: $secondary-light;
 }
