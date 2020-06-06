@@ -22,19 +22,29 @@
     </form> -->
 
     <header>
-      <h1>A Million Ways To A Million</h1>
-      <form id="form-stuff">
-        <label for="target-revenue">I'm looking to make</label>
-        <input type="number" name="target-revenue" id="target-revenue" />
-        <label for="subscription">I'll be doing it in the form of</label>
-        <select name="subscription" id="subscription">
-          <option value="False">one-time purchases</option>
-          <option value="True">monthly subscriptions</option>
-        </select>
-        <label for="time-frame">I need to do this within</label>
-        <input type="number" id="time-frame" />
-        <button id="form-button">Calculate</button>
-      </form>
+      <div class="wrapper">
+        <h1>A Million Ways To A Million</h1>
+        <form id="form-stuff">
+          <div class="inputs">
+            <fieldset>
+              <label for="target-revenue">I'm looking to make</label>
+              <input type="number" name="target-revenue" id="target-revenue" />
+            </fieldset>
+            <fieldset>
+              <label for="subscription">I'll be doing it in the form of</label>
+              <select name="subscription" id="subscription">
+                <option value="False">one-time purchases</option>
+                <option value="True">monthly subscriptions</option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <label for="time-frame">I need to do this within</label>
+              <input type="number" id="time-frame" />
+            </fieldset>
+          </div>
+          <button id="form-button">Calculate</button>
+        </form>
+      </div>
     </header>
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"

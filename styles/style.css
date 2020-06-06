@@ -343,16 +343,23 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.wrapper {
+  width: 1600px;
+  margin: 0 auto;
+  background: blue;
+}
+
 h1 {
   font-family: "Playfair Display", serif;
   font-size: 7rem;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 90%;
   color: #f7efee;
+  max-width: 54rem;
 }
 
 label {
   font-size: 3rem;
-  font-weight: light;
+  font-weight: 300;
   color: #f4f4f4;
 }
