@@ -426,27 +426,6 @@ form button {
   font-size: 2rem;
 }
 
-table {
-  color: #f7efee;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-tr:nth-child(even) {
-  background-color: #353440;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-.summary {
-  color: #f7efee;
-  background-color: #353440;
-}
-
 section {
   display: none;
   margin-top: 20rem;
@@ -467,6 +446,34 @@ section .table {
   width: 45%;
 }
 
+section .table table {
+  color: #f7efee;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+section .table tr:nth-child(even) {
+  background-color: #353440;
+}
+
+section .table th,
+section .table td {
+  text-align: left;
+  padding: 8px;
+}
+
+section .table th {
+  color: #f1ae12;
+}
+
+section .table .revenue {
+  font-weight: 300;
+}
+
 section .summary {
   width: 45%;
+  color: #f7efee;
+  background-color: #353440;
 }

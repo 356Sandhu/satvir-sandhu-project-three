@@ -14,7 +14,9 @@ $(document).ready(function () {
 
     $("section").show();
 
-    $("#period-1").text("kol");
+    breakdown.forEach((item, index) => {
+      $(`#period-${index + 1} .revenue`).text(`${item}`);
+    });
 
     $("body,html").animate(
       {

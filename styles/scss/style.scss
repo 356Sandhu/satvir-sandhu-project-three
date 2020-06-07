@@ -89,27 +89,6 @@ form {
   }
 }
 
-table {
-  color: $primary-light;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-tr:nth-child(even) {
-  background-color: $secondary-dark;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-.summary {
-  color: $primary-light;
-  background-color: $secondary-dark;
-}
-
 section {
   display: none;
   margin-top: 20rem;
@@ -121,8 +100,35 @@ section {
   }
   .table {
     width: 45%;
+    table {
+      color: $primary-light;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    tr:nth-child(even) {
+      background-color: $secondary-dark;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      color: $accent-color;
+    }
+
+    .revenue {
+      font-weight: 300;
+    }
   }
   .summary {
     width: 45%;
+    color: $primary-light;
+    background-color: $secondary-dark;
   }
 }
