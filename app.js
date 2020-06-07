@@ -11,5 +11,16 @@ $(document).ready(function () {
     }
     console.log(target_revenue, subscription, time_frame);
     console.table(breakdown);
+
+    $("section").show();
+
+    $("#period-1").text("kol");
+
+    $("body,html").animate(
+      {
+        scrollTop: $("section").offset().top,
+      },
+      800 //speed
+    );
   });
 });
