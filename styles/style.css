@@ -517,6 +517,40 @@ section .sliders input::-moz-range-thumb {
   cursor: pointer;
 }
 
+section .sliders .customers,
+section .sliders .pricing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+section .sliders .customers input,
+section .sliders .pricing input {
+  width: 100%;
+}
+
+section .sliders .customers .min,
+section .sliders .customers .max,
+section .sliders .pricing .min,
+section .sliders .pricing .max {
+  width: 40%;
+}
+
+section .sliders .customers .max,
+section .sliders .pricing .max {
+  text-align: right;
+}
+
+section .sliders .current-value {
+  width: 100%;
+  text-align: center;
+}
+
 section .sliders .pricing {
   margin-top: 4rem;
 }

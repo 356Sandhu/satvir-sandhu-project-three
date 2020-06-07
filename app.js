@@ -25,28 +25,51 @@ $(document).ready(function () {
       800
     );
 
-    let min_price, max_price, min_customers, max_customers;
+    let min_price,
+      max_price,
+      min_customers,
+      max_customers,
+      current_price,
+      current_customers;
     if (subscription) {
       min_price = 1.0;
-      max_price = 100.0;
+      max_price = 10;
       min_customers = target_revenue / max_price / time_frame;
       max_customers = target_revenue / min_price / time_frame;
     } else {
       min_price = 1.0;
-      max_price = 1000.0;
+      max_price = 10.0;
       min_customers = target_revenue / max_price;
       max_customers = target_revenue / min_price;
     }
 
+    console.log(min_customers, max_customers, min_price, max_price);
+
     $(".customers input[type=range]").attr("min", min_customers);
     $(".customers input[type=range]").attr("max", max_customers);
+    $(".customers .min").text(min_customers);
+    $(".customers .max").text(max_customers);
 
     $(".pricing input[type=range]").attr("min", min_price);
     $(".pricing input[type=range]").attr("max", max_price);
+    $(".pricing .min").text(min_price);
+    $(".pricing .max").text(max_price);
 
-    $("input[type=range]").attr("max", 20);
-    $("input[type=range]").on("input", function () {
-      console.log($(this).val());
+    $(".customers input[type=range]").on("input", function () {
+      $(".customers .current-value").text(
+        $(".customers input[type=range]").val()
+      );
+      current_customers = $(".customers input[type=range]").val();
+      if (subscription) {
+        current_price = target_revenue / current_customers / time_frame;
+      } else {
+        current_price = target_revenue / current_customers;
+      }
+      $(".pricing input[type=range]").val(current_price);
+    });
+
+    $(".pricing input[type=range]").on("input", function () {
+      $(".pricing .current-value").text($(".pricing input[type=range]").val());
     });
   });
 });

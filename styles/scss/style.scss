@@ -165,6 +165,29 @@ section {
       }
     }
 
+    .customers,
+    .pricing {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      input {
+        width: 100%;
+      }
+      .min,
+      .max {
+        width: 40%;
+      }
+
+      .max {
+        text-align: right;
+      }
+    }
+
+    .current-value {
+      width: 100%;
+      text-align: center;
+    }
+
     .pricing {
       margin-top: 4rem;
     }
