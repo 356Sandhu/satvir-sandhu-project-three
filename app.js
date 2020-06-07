@@ -22,7 +22,31 @@ $(document).ready(function () {
       {
         scrollTop: $("section").offset().top,
       },
-      800 //speed
+      800
     );
+
+    let min_price, max_price, min_customers, max_customers;
+    if (subscription) {
+      min_price = 1.0;
+      max_price = 100.0;
+      min_customers = target_revenue / max_price / time_frame;
+      max_customers = target_revenue / min_price / time_frame;
+    } else {
+      min_price = 1.0;
+      max_price = 1000.0;
+      min_customers = target_revenue / max_price;
+      max_customers = target_revenue / min_price;
+    }
+
+    $(".customers input[type=range]").attr("min", min_customers);
+    $(".customers input[type=range]").attr("max", max_customers);
+
+    $(".pricing input[type=range]").attr("min", min_price);
+    $(".pricing input[type=range]").attr("max", max_price);
+
+    $("input[type=range]").attr("max", 20);
+    $("input[type=range]").on("input", function () {
+      console.log($(this).val());
+    });
   });
 });
