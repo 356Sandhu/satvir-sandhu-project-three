@@ -1,76 +1,133 @@
-$(document).ready(function () {
-  console.log("ready!");
-  $("#form-stuff").submit(function (e) {
-    e.preventDefault();
-    let target_revenue = $("#target-revenue").val();
-    let subscription = $("#subscription").val();
-    let time_frame = $("#time-frame").val();
-    let breakdown = [];
-    for (let i = 0; i < 6; i++) {
-      breakdown[i] = target_revenue * ((i + 1) / 6);
-    }
-    console.log(target_revenue, subscription, time_frame);
-    console.table(breakdown);
+let state = {};
 
-    $("section").show();
+state.init = function () {
+  state.form = $("#form-stuff");
 
-    breakdown.forEach((item, index) => {
-      $(`#period-${index + 1} .revenue`).text(`${item}`);
-    });
+  state.slider = $(".slider input[type=range]");
+  state.slider_min = $(".slider .min");
+  state.slider_max = $(".slider .max");
+  state.slider_type = $("input[type=radio][name=slider-type]");
+  state.slider_heading = $(".slider h2");
+  state.slider_current = $(".slider .current-value");
 
+  state.input_revenue = $("#target-revenue");
+  state.input_subscription = $("#subscription");
+  state.input_time = $("#time-frame");
+
+  state.fetchInputs = function () {
+    state.target_revenue = state.input_revenue.val();
+    state.subscription = state.input_subscription.val();
+    state.time_frame = state.input_time.val();
+  };
+
+  state.animate = function (duration) {
     $("body,html").animate(
       {
         scrollTop: $("section").offset().top,
       },
-      800
+      duration
     );
+  };
 
-    let min_price,
-      max_price,
-      min_customers,
-      max_customers,
-      current_price,
-      current_customers;
-    if (subscription) {
-      min_price = 1.0;
-      max_price = 10;
-      min_customers = target_revenue / max_price / time_frame;
-      max_customers = target_revenue / min_price / time_frame;
-    } else {
-      min_price = 1.0;
-      max_price = 10.0;
-      min_customers = target_revenue / max_price;
-      max_customers = target_revenue / min_price;
+  state.doMath = function () {
+    state.breakdown = [];
+    for (let i = 0; i < 6; i++) {
+      state.breakdown[i] = state.target_revenue * ((i + 1) / 6);
     }
 
-    console.log(min_customers, max_customers, min_price, max_price);
+    state.min_price = 1.0;
+    state.max_price = 10.0;
 
-    $("input[type=radio][name=slider-type]").change(function () {
-      console.log(this.value);
+    if (state.subscription == "true") {
+      state.min_customers =
+        state.target_revenue / state.max_price / state.time_frame;
+      state.max_customers =
+        state.target_revenue / state.min_price / state.time_frame;
+    } else {
+      state.min_customers = state.target_revenue / state.max_price;
+      state.max_customers = state.target_revenue / state.min_price;
+    }
+
+    state.current_price = (state.max_price + state.min_price) / 2;
+    state.current_customers = (state.max_customers + state.min_customers) / 2;
+  };
+
+  state.setSlider = function (box) {
+    if (box.value === "pricing") {
+      state.slider.attr("min", state.min_price);
+      state.slider.attr("max", state.max_price);
+      state.slider.attr("step", "0.01");
+      state.slider_min.text(state.min_price);
+      state.slider_max.text(state.max_price);
+
+      state.slider.val(state.current_price);
+      state.slider_current.text(state.slider.val());
+    } else {
+      state.slider.attr("min", state.min_customers);
+      state.slider.attr("max", state.max_customers);
+      state.slider.attr("step", "1");
+      state.slider_min.text(state.min_customers);
+      state.slider_max.text(state.max_customers);
+
+      state.slider.val(state.current_customers);
+      state.slider_current.text(state.slider.val());
+    }
+  };
+
+  state.form.submit(function (e) {
+    e.preventDefault();
+
+    state.fetchInputs();
+    state.doMath();
+    state.setSlider(state.slider_type);
+
+    $("#customers-radio").prop("checked", true);
+
+    state.breakdown.forEach((item, index) => {
+      $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
     });
 
-    $(".customers input[type=range]").attr("min", min_customers);
-    $(".customers input[type=range]").attr("max", max_customers);
-    $(".customers .min").text(min_customers);
-    $(".customers .max").text(max_customers);
+    $("section").show();
 
-    $(".pricing input[type=range]").attr("min", min_price);
-    $(".pricing input[type=range]").attr("max", max_price);
-    $(".pricing .min").text(min_price);
-    $(".pricing .max").text(max_price);
-
-    $(".slider input[type=range]").on("input", function () {
-      $(".slider .current-value").text($(".slider input[type=range]").val());
-      current_customers = $(".slider input[type=range]").val();
-      if (subscription) {
-        current_price = target_revenue / current_customers / time_frame;
-      } else {
-        current_price = target_revenue / current_customers;
-      }
-    });
-
-    $(".pricing input[type=range]").on("input", function () {
-      $(".pricing .current-value").text($(".pricing input[type=range]").val());
-    });
+    state.animate(1000);
   });
+
+  state.slider_type.change(function () {
+    state.setSlider(this);
+  });
+
+  state.slider.on("input", function () {
+    state.slider_current.text(state.slider.val());
+
+    if ($("input[name=slider-type]:checked").val() === "pricing") {
+      state.current_price = state.slider.val();
+      if (state.subscription == "true") {
+        state.current_customers = Math.ceil(
+          state.target_revenue / state.current_price / state.time_frame
+        );
+      } else {
+        state.current_customers = Math.ceil(
+          state.target_revenue / state.current_price
+        );
+      }
+      state.slider_heading.text(
+        `At $${state.current_price} per month, you would need ${state.current_customers} customers.`
+      );
+    } else {
+      state.current_customers = state.slider.val();
+      if (state.subscription == "true") {
+        state.current_price =
+          state.target_revenue / state.current_customers / state.time_frame;
+      } else {
+        state.current_price = state.target_revenue / state.current_customers;
+      }
+      state.slider_heading.text(
+        `Having ${state.current_customers} customers, you would need to charge $${state.current_price}.`
+      );
+    }
+  });
+};
+
+$(document).ready(function () {
+  state.init();
 });
