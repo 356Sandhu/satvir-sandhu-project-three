@@ -38,10 +38,12 @@ p {
   font-weight: 300;
 }
 
-label {
-  font-size: 4rem;
-  font-weight: 300;
-  color: $secondary-light;
+header {
+  label {
+    font-size: 4rem;
+    font-weight: 300;
+    color: $secondary-light;
+  }
 }
 
 form {
@@ -144,9 +146,13 @@ section {
     background-color: $secondary-dark;
     padding: 3rem 2rem;
   }
-  .sliders {
+  .slider {
     color: $accent-color;
-    input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    input[type="range"] {
+      width: 100%;
       appearance: none;
       outline: none;
       background: $secondary-dark;
@@ -165,31 +171,18 @@ section {
       }
     }
 
-    .customers,
-    .pricing {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      input {
-        width: 100%;
-      }
-      .min,
-      .max {
-        width: 40%;
-      }
-
-      .max {
-        text-align: right;
-      }
+    .min,
+    .max {
+      width: 40%;
     }
 
-    .current-value {
-      width: 100%;
-      text-align: center;
+    .max {
+      text-align: right;
     }
+  }
 
-    .pricing {
-      margin-top: 4rem;
-    }
+  .current-value {
+    width: 100%;
+    text-align: center;
   }
 }

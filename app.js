@@ -45,6 +45,10 @@ $(document).ready(function () {
 
     console.log(min_customers, max_customers, min_price, max_price);
 
+    $("input[type=radio][name=slider-type]").change(function () {
+      console.log(this.value);
+    });
+
     $(".customers input[type=range]").attr("min", min_customers);
     $(".customers input[type=range]").attr("max", max_customers);
     $(".customers .min").text(min_customers);
@@ -55,17 +59,14 @@ $(document).ready(function () {
     $(".pricing .min").text(min_price);
     $(".pricing .max").text(max_price);
 
-    $(".customers input[type=range]").on("input", function () {
-      $(".customers .current-value").text(
-        $(".customers input[type=range]").val()
-      );
-      current_customers = $(".customers input[type=range]").val();
+    $(".slider input[type=range]").on("input", function () {
+      $(".slider .current-value").text($(".slider input[type=range]").val());
+      current_customers = $(".slider input[type=range]").val();
       if (subscription) {
         current_price = target_revenue / current_customers / time_frame;
       } else {
         current_price = target_revenue / current_customers;
       }
-      $(".pricing input[type=range]").val(current_price);
     });
 
     $(".pricing input[type=range]").on("input", function () {
