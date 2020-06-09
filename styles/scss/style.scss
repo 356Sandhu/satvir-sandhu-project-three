@@ -69,22 +69,6 @@ form {
     appearance: none;
   }
 
-  .select-container {
-    position: relative;
-  }
-
-  .select-container::after {
-    content: "\f107";
-    font-family: "fontawesome";
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    font-size: 2rem;
-    transform: translateY(-50%);
-
-    color: white;
-  }
-
   input {
     -moz-appearance: textfield;
   }
@@ -147,10 +131,14 @@ section {
     padding: 3rem 2rem;
   }
   .slider {
+    width: 45%;
     color: $accent-color;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    fieldset {
+      width: 100%;
+    }
     input[type="range"] {
       width: 100%;
       appearance: none;

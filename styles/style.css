@@ -405,22 +405,6 @@ form select {
           appearance: none;
 }
 
-form .select-container {
-  position: relative;
-}
-
-form .select-container::after {
-  content: "\f107";
-  font-family: "fontawesome";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  font-size: 2rem;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  color: white;
-}
-
 form input {
   -moz-appearance: textfield;
 }
@@ -493,6 +477,7 @@ section .summary {
 }
 
 section .slider {
+  width: 45%;
   color: #f1ae12;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -502,6 +487,10 @@ section .slider {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+section .slider fieldset {
+  width: 100%;
 }
 
 section .slider input[type="range"] {

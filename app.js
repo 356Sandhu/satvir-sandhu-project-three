@@ -39,10 +39,12 @@ state.init = function () {
     state.max_price = 10.0;
 
     if (state.subscription == "true") {
-      state.min_customers =
-        state.target_revenue / state.max_price / state.time_frame;
-      state.max_customers =
-        state.target_revenue / state.min_price / state.time_frame;
+      state.min_customers = Math.ceil(
+        state.target_revenue / state.max_price / state.time_frame
+      );
+      state.max_customers = Math.ceil(
+        state.target_revenue / state.min_price / state.time_frame
+      );
     } else {
       state.min_customers = state.target_revenue / state.max_price;
       state.max_customers = state.target_revenue / state.min_price;
@@ -61,7 +63,7 @@ state.init = function () {
       state.slider_max.text(state.max_price);
 
       state.slider.val(state.current_price);
-      state.slider_current.text(state.slider.val());
+      state.slider_current.text(`$${state.slider.val()}`);
     } else {
       state.slider.attr("min", state.min_customers);
       state.slider.attr("max", state.max_customers);
@@ -70,7 +72,7 @@ state.init = function () {
       state.slider_max.text(state.max_customers);
 
       state.slider.val(state.current_customers);
-      state.slider_current.text(state.slider.val());
+      state.slider_current.text(`${state.slider.val()} customers`);
     }
   };
 
@@ -97,33 +99,43 @@ state.init = function () {
   });
 
   state.slider.on("input", function () {
-    state.slider_current.text(state.slider.val());
-
     if ($("input[name=slider-type]:checked").val() === "pricing") {
-      state.current_price = state.slider.val();
+      state.slider_current.text(`$${state.slider.val()}`);
+      state.current_price = parseFloat(state.slider.val()).toFixed(2);
+
       if (state.subscription == "true") {
         state.current_customers = Math.ceil(
           state.target_revenue / state.current_price / state.time_frame
+        );
+        state.slider_heading.text(
+          `At $${state.current_price} per month, you would need ${state.current_customers} monthly subscribers.`
         );
       } else {
         state.current_customers = Math.ceil(
           state.target_revenue / state.current_price
         );
+        state.slider_heading.text(
+          `At $${state.current_price} per item, you would need ${state.current_customers} customers.`
+        );
       }
-      state.slider_heading.text(
-        `At $${state.current_price} per month, you would need ${state.current_customers} customers.`
-      );
     } else {
+      state.slider_current.text(`${state.slider.val()} customers`);
       state.current_customers = state.slider.val();
       if (state.subscription == "true") {
-        state.current_price =
-          state.target_revenue / state.current_customers / state.time_frame;
+        state.current_price = parseFloat(
+          state.target_revenue / state.current_customers / state.time_frame
+        ).toFixed(2);
+        state.slider_heading.text(
+          `Having ${state.current_customers} monthly subcribers, you would need to charge $${state.current_price} per month.`
+        );
       } else {
-        state.current_price = state.target_revenue / state.current_customers;
+        state.current_price = parseFloat(
+          state.target_revenue / state.current_customers
+        ).toFixed(2);
+        state.slider_heading.text(
+          `Having ${state.current_customers} customers, you would need to charge $${state.current_price} per item.`
+        );
       }
-      state.slider_heading.text(
-        `Having ${state.current_customers} customers, you would need to charge $${state.current_price}.`
-      );
     }
   });
 };
