@@ -360,7 +360,6 @@ h1 {
   letter-spacing: 4%;
   color: #f7efee;
   max-width: 70%;
-  margin-top: 3rem;
 }
 
 h2 {
@@ -372,6 +371,16 @@ p {
   font-size: 1.75rem;
   line-height: 40px;
   font-weight: 300;
+}
+
+header {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header label {
@@ -540,14 +549,14 @@ section .slider input[type="range"]::-moz-range-thumb {
 
 section .slider .min,
 section .slider .max {
-  width: 40%;
+  width: 50%;
 }
 
 section .slider .max {
   text-align: right;
 }
 
-section .current-value {
+section .currentValue {
   width: 100%;
   text-align: center;
 }
@@ -588,7 +597,7 @@ section .bottom {
   margin-left: 3rem;
 }
 
-section .graph-contents {
+section .graphContents {
   background-color: #353440;
   width: calc(100% - 3rem);
   padding: 2rem 1rem;

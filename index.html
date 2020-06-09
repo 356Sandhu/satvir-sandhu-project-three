@@ -15,33 +15,23 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
-    <!-- <form id="form-stuff">
-      <input type="number" id="target-revenue" />
-      <select name="subscription" id="subscription">
-        <option value="False">One-time purchase</option>
-        <option value="True">Subscription</option>
-      </select>
-      <input type="number" id="time-frame" />
-      <button id="form-button">Hello</button>
-    </form> -->
-
     <header>
       <div class="wrapper">
         <h1>A Million Ways to a Million</h1>
-        <form id="form-stuff">
+        <form id="formStuff">
           <div class="inputs">
             <fieldset>
-              <label for="target-revenue">I'm looking to make</label>
+              <label for="targetRevenue">I'm looking to make</label>
               <input
                 type="number"
-                name="target-revenue"
-                id="target-revenue"
+                name="targetRevenue"
+                id="targetRevenue"
                 required
               />
             </fieldset>
             <fieldset>
               <label for="subscription">I'll be doing it in the form of</label>
-              <div class="select-container">
+              <div class="selectContainer">
                 <select name="subscription" id="subscription">
                   <option value="false">one-time purchases</option>
                   <option value="true">monthly subscriptions</option>
@@ -49,8 +39,8 @@
               </div>
             </fieldset>
             <fieldset>
-              <label for="time-frame">I need to do this within</label>
-              <select name="time-frame" id="time-frame">
+              <label for="timeFrame">I need to do this within</label>
+              <select name="timeFrame" id="timeFrame">
                 <option value="6">6 Months</option>
                 <option value="12">1 Year</option>
                 <option value="18">18 Months</option>
@@ -64,7 +54,7 @@
               </select>
             </fieldset>
           </div>
-          <button id="form-button">Calculate</button>
+          <button id="formButton">Calculate</button>
         </form>
       </div>
     </header>
@@ -72,35 +62,35 @@
       <div class="wrapper">
         <div class="graph">
           <h3 class="side">Total Revenue</h3>
-          <div class="graph-contents">
-            <div class="bar" id="bar-1"></div>
-            <div class="bar" id="bar-2"></div>
-            <div class="bar" id="bar-3"></div>
-            <div class="bar" id="bar-4"></div>
-            <div class="bar" id="bar-5"></div>
-            <div class="bar" id="bar-6"></div>
+          <div class="graphContents">
+            <div class="bar" id="bar1"></div>
+            <div class="bar" id="bar2"></div>
+            <div class="bar" id="bar3"></div>
+            <div class="bar" id="bar4"></div>
+            <div class="bar" id="bar5"></div>
+            <div class="bar" id="bar6"></div>
           </div>
           <h3 class="bottom">Span Over 6 Periods</h3>
         </div>
         <div class="slider">
           <fieldset>
-            <label for="customers-radio">Adjust Customers</label>
+            <label for="customersRadio">Adjust Customers</label>
             <input
               type="radio"
-              name="slider-type"
-              id="customers-radio"
+              name="sliderType"
+              id="customersRadio"
               value="customers"
               checked
             />
-            <label for="pricing-radio">Adjust Pricing</label>
+            <label for="pricingRadio">Adjust Pricing</label>
             <input
               type="radio"
-              name="slider-type"
-              id="pricing-radio"
+              name="sliderType"
+              id="pricingRadio"
               value="pricing"
             />
           </fieldset>
-          <p class="current-value">50</p>
+          <p class="currentValue">50</p>
           <input type="range" min="1" max="2" step="0.01" />
           <p class="min">lol</p>
           <p class="max">lol</p>
@@ -112,27 +102,27 @@
               <th>Time Period</th>
               <th>Total Revenue</th>
             </tr>
-            <tr id="period-1">
+            <tr id="period1">
               <td class="name">Period 1</td>
               <td class="revenue">100,000</td>
             </tr>
-            <tr id="period-2">
+            <tr id="period2">
               <td class="name">Period 2</td>
               <td class="revenue">200,000</td>
             </tr>
-            <tr id="period-3">
+            <tr id="period3">
               <td class="name">Period 3</td>
               <td class="revenue">300,000</td>
             </tr>
-            <tr id="period-4">
+            <tr id="period4">
               <td class="name">Period 4</td>
               <td class="revenue">400,000</td>
             </tr>
-            <tr id="period-5">
+            <tr id="period5">
               <td class="name">Period 5</td>
               <td class="revenue">500,000</td>
             </tr>
-            <tr id="period-6">
+            <tr id="period6">
               <td class="name">Period 6</td>
               <td class="revenue">600,000</td>
             </tr>

@@ -1,23 +1,23 @@
 let state = {};
 
 state.init = function () {
-  state.form = $("#form-stuff");
+  state.form = $("#formStuff");
 
   state.slider = $(".slider input[type=range]");
-  state.slider_min = $(".slider .min");
-  state.slider_max = $(".slider .max");
-  state.slider_type = $("input[type=radio][name=slider-type]");
-  state.slider_heading = $(".summary p");
-  state.slider_current = $(".slider .current-value");
+  state.sliderMin = $(".slider .min");
+  state.sliderMax = $(".slider .max");
+  state.sliderType = $("input[type=radio][name=sliderType]");
+  state.sliderHeading = $(".summary p");
+  state.sliderCurrent = $(".slider .currentValue");
 
-  state.input_revenue = $("#target-revenue");
-  state.input_subscription = $("#subscription");
-  state.input_time = $("#time-frame");
+  state.inputRevenue = $("#targetRevenue");
+  state.inputSubscription = $("#subscription");
+  state.inputTime = $("#timeFrame");
 
   state.fetchInputs = function () {
-    state.target_revenue = state.input_revenue.val();
-    state.subscription = state.input_subscription.val();
-    state.time_frame = state.input_time.val();
+    state.targetRevenue = state.inputRevenue.val();
+    state.subscription = state.inputSubscription.val();
+    state.timeFrame = state.inputTime.val();
   };
 
   state.animate = function (duration) {
@@ -32,53 +32,54 @@ state.init = function () {
   state.doMath = function () {
     state.breakdown = [];
     for (let i = 0; i < 6; i++) {
-      state.breakdown[i] = state.target_revenue * ((i + 1) / 6);
+      state.breakdown[i] = state.targetRevenue * ((i + 1) / 6);
     }
 
-    state.min_price = 1.0;
-    state.max_price = 10.0;
+    state.minPrice = 1.0;
+    state.maxPrice = 10.0;
 
     if (state.subscription == "true") {
-      state.min_customers = Math.ceil(
-        state.target_revenue / state.max_price / state.time_frame
+      state.minCustomers = Math.ceil(
+        state.targetRevenue / state.maxPrice / state.timeFrame
       );
-      state.max_customers = Math.ceil(
-        state.target_revenue / state.min_price / state.time_frame
+      state.maxCustomers = Math.ceil(
+        state.targetRevenue / state.minPrice / state.timeFrame
       );
     } else {
-      state.min_customers = Math.ceil(state.target_revenue / state.max_price);
-      state.max_customers = Math.ceil(state.target_revenue / state.min_price);
+      state.minCustomers = Math.ceil(state.targetRevenue / state.maxPrice);
+      state.maxCustomers = Math.ceil(state.targetRevenue / state.minPrice);
     }
 
-    state.current_price = (state.max_price + state.min_price) / 2;
-    state.current_customers = Math.ceil(
-      (state.max_customers + state.min_customers) / 2
+    state.currentPrice = (state.maxPrice + state.minPrice) / 2;
+    state.currentCustomers = Math.ceil(
+      (state.maxCustomers + state.minCustomers) / 2
     );
   };
 
   state.setSlider = function (box) {
+    console.log(box.value);
     if (box.value === "pricing") {
-      state.slider.attr("min", state.min_price);
-      state.slider.attr("max", state.max_price);
+      state.slider.attr("min", state.minPrice);
+      state.slider.attr("max", state.maxPrice);
       state.slider.attr("step", "0.01");
-      state.slider_min.text(state.min_price);
-      state.slider_max.text(state.max_price);
+      state.sliderMin.text(state.minPrice);
+      state.sliderMax.text(state.maxPrice);
 
-      state.slider.val(state.current_price);
-      state.slider_current.text(`$${state.slider.val()}`);
+      state.slider.val(state.currentPrice);
+      state.sliderCurrent.text(`$${state.slider.val()}`);
     } else {
-      state.slider.attr("min", state.min_customers);
-      state.slider.attr("max", state.max_customers);
+      state.slider.attr("min", state.minCustomers);
+      state.slider.attr("max", state.maxCustomers);
       state.slider.attr("step", "1");
-      state.slider_min.text(state.min_customers);
-      state.slider_max.text(state.max_customers);
+      state.sliderMin.text(state.minCustomers);
+      state.sliderMax.text(state.maxCustomers);
 
-      state.slider.val(state.current_customers);
-      state.slider_current.text(`${state.slider.val()} customers`);
+      state.slider.val(state.currentCustomers);
+      state.sliderCurrent.text(`${state.slider.val()} customers`);
     }
 
-    state.slider_heading.html(
-      `At <span class="accented">$${state.current_price}</span> per month, you would need <span class="accented">${state.current_customers}</span> monthly subscribers.`
+    state.sliderHeading.html(
+      `At <span class="accented">$${state.currentPrice}</span> per month, you would need <span class="accented">${state.currentCustomers}</span> monthly subscribers.`
     );
   };
 
@@ -87,9 +88,9 @@ state.init = function () {
 
     state.fetchInputs();
     state.doMath();
-    state.setSlider(state.slider_type);
+    state.setSlider(state.sliderType);
 
-    $("#customers-radio").prop("checked", true);
+    $("#customersRadio").prop("checked", true);
 
     $(`.bar`).height("0px");
     state.breakdown.forEach((item, index) => {
@@ -100,27 +101,24 @@ state.init = function () {
           duration: 2000,
           easing: "swing",
           step: function () {
-            $(`#period-${index + 1} .revenue`).text(
+            $(`#period${index + 1} .revenue`).text(
               `$${Math.floor(this.counter)}`
             );
           },
           complete: function () {
-            $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+            $(`#period${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
           },
         }
       );
 
-      $(`#bar-${index + 1}`).animate(
+      $(`#bar${index + 1}`).animate(
         {
           height: `${
-            ((item * ((index + 1) / 6)) / state.target_revenue) * 100
+            ((item * ((index + 1) / 6)) / state.targetRevenue) * 100
           }%`,
         },
         2000
       );
-      // $(`#bar-${index + 1}`).height(
-      //   `${((item * ((index + 1) / 6)) / state.target_revenue) * 100}%`
-      // );
     });
 
     $("section").show();
@@ -128,46 +126,46 @@ state.init = function () {
     state.animate(1000);
   });
 
-  state.slider_type.change(function () {
+  state.sliderType.change(function () {
     state.setSlider(this);
   });
 
   state.slider.on("input", function () {
-    if ($("input[name=slider-type]:checked").val() === "pricing") {
-      state.slider_current.text(`$${state.slider.val()}`);
-      state.current_price = parseFloat(state.slider.val()).toFixed(2);
+    if ($("input[name=sliderType]:checked").val() === "pricing") {
+      state.sliderCurrent.text(`$${state.slider.val()}`);
+      state.currentPrice = parseFloat(state.slider.val()).toFixed(2);
 
       if (state.subscription == "true") {
-        state.current_customers = Math.ceil(
-          state.target_revenue / state.current_price / state.time_frame
+        state.currentCustomers = Math.ceil(
+          state.targetRevenue / state.currentPrice / state.timeFrame
         );
-        state.slider_heading.html(
-          `At <span class="accented">$${state.current_price}</span> per month, you would need <span class="accented">${state.current_customers}</span> monthly subscribers.`
+        state.sliderHeading.html(
+          `At <span class="accented">$${state.currentPrice}</span> per month, you would need <span class="accented">${state.currentCustomers}</span> monthly subscribers.`
         );
       } else {
-        state.current_customers = Math.ceil(
-          state.target_revenue / state.current_price
+        state.currentCustomers = Math.ceil(
+          state.targetRevenue / state.currentPrice
         );
-        state.slider_heading.html(
-          `At <span class="accented">$${state.current_price}</span> per item, you would need <span class="accented">${state.current_customers}</span> customers.`
+        state.sliderHeading.html(
+          `At <span class="accented">$${state.currentPrice}</span> per item, you would need <span class="accented">${state.currentCustomers}</span> customers.`
         );
       }
     } else {
-      state.slider_current.text(`${Math.ceil(state.slider.val())} customers`);
-      state.current_customers = Math.ceil(state.slider.val());
+      state.sliderCurrent.text(`${Math.ceil(state.slider.val())} customers`);
+      state.currentCustomers = Math.ceil(state.slider.val());
       if (state.subscription == "true") {
-        state.current_price = parseFloat(
-          state.target_revenue / state.current_customers / state.time_frame
+        state.currentPrice = parseFloat(
+          state.targetRevenue / state.currentCustomers / state.timeFrame
         ).toFixed(2);
-        state.slider_heading.html(
-          `Having <span class="accented"> ${state.current_customers} </span> monthly subcribers, you would need to charge <span class="accented">$${state.current_price}</span> per month.`
+        state.sliderHeading.html(
+          `Having <span class="accented"> ${state.currentCustomers} </span> monthly subcribers, you would need to charge <span class="accented">$${state.currentPrice}</span> per month.`
         );
       } else {
-        state.current_price = parseFloat(
-          state.target_revenue / state.current_customers
+        state.currentPrice = parseFloat(
+          state.targetRevenue / state.currentCustomers
         ).toFixed(2);
-        state.slider_heading.html(
-          `Having <span class="accented">${state.current_customers}</span> customers, you would need to charge <span class="accented">$${state.current_price}</span> per item.`
+        state.sliderHeading.html(
+          `Having <span class="accented">${state.currentCustomers}</span> customers, you would need to charge <span class="accented">$${state.currentPrice}</span> per item.`
         );
       }
     }
