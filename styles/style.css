@@ -617,3 +617,40 @@ section .bar {
   height: 1%;
   background-color: #f1ae12;
 }
+
+@media (max-width: 1599px) {
+  .wrapper {
+    width: 1200px;
+  }
+  h1 {
+    max-width: 70%;
+    font-size: 7rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  header label {
+    font-size: 3rem;
+  }
+  section .graph {
+    height: 300px;
+  }
+  section .table,
+  .summary {
+    margin-top: 7.5rem;
+  }
+  section .side,
+  section .bottom {
+    font-size: 1.5rem;
+  }
+  section .slider fieldset label {
+    font-size: 1.4rem;
+  }
+  td,
+  tr {
+    font-size: 1.5rem;
+  }
+}
