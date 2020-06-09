@@ -394,7 +394,7 @@ form input,
 form select {
   margin-left: 1rem;
   font-size: 2rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   height: 4rem;
   font-weight: 300;
   color: #f4f4f4;
@@ -426,6 +426,10 @@ section {
   margin-top: 20rem;
   margin-bottom: 20rem;
   width: 100%;
+}
+
+section option {
+  text-align: center;
 }
 
 section .wrapper {
@@ -487,6 +491,9 @@ section .slider {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 section .slider fieldset {
@@ -494,6 +501,7 @@ section .slider fieldset {
 }
 
 section .slider input[type="range"] {
+  height: 1rem;
   width: 100%;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -527,4 +535,38 @@ section .slider .max {
 section .current-value {
   width: 100%;
   text-align: center;
+}
+
+section .slider,
+section .graph {
+  margin-top: 4rem;
+}
+
+section .graph {
+  background-color: #353440;
+  height: 500px;
+  width: 45%;
+}
+
+section .graph-contents {
+  width: 90%;
+  margin: 2rem auto;
+  height: calc(100% - 4rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+section .bar {
+  width: 10%;
+  height: 1%;
+  background-color: #f1ae12;
+  -webkit-transition: 2s ease-in-out;
+  transition: 2s ease-in-out;
 }

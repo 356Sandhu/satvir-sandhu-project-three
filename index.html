@@ -32,7 +32,12 @@
           <div class="inputs">
             <fieldset>
               <label for="target-revenue">I'm looking to make</label>
-              <input type="number" name="target-revenue" id="target-revenue" />
+              <input
+                type="number"
+                name="target-revenue"
+                id="target-revenue"
+                required
+              />
             </fieldset>
             <fieldset>
               <label for="subscription">I'll be doing it in the form of</label>
@@ -130,6 +135,18 @@
           <p class="min">lol</p>
           <p class="max">lol</p>
           <h2></h2>
+        </div>
+        <div class="graph">
+          <h3>Total Revenue</h3>
+          <div class="graph-contents">
+            <div class="bar" id="bar-1"></div>
+            <div class="bar" id="bar-2"></div>
+            <div class="bar" id="bar-3"></div>
+            <div class="bar" id="bar-4"></div>
+            <div class="bar" id="bar-5"></div>
+            <div class="bar" id="bar-6"></div>
+          </div>
+          <h3>Span Over 6 Periods</h3>
         </div>
       </div>
     </section>

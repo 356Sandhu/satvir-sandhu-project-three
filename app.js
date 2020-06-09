@@ -87,6 +87,17 @@ state.init = function () {
 
     state.breakdown.forEach((item, index) => {
       $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+      $(`#bar-${index + 1}`).animate(
+        {
+          height: `${
+            ((item * ((index + 1) / 6)) / state.target_revenue) * 100
+          }%`,
+        },
+        800
+      );
+      // $(`#bar-${index + 1}`).height(
+      //   `${((item * ((index + 1) / 6)) / state.target_revenue) * 100}%`
+      // );
     });
 
     $("section").show();
