@@ -16,6 +16,10 @@ body {
   margin: 0 auto;
 }
 
+.accented {
+  color: $accent-color;
+}
+
 h1 {
   font-family: "Playfair Display", serif;
   font-size: 10rem;

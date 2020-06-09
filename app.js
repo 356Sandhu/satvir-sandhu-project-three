@@ -77,8 +77,8 @@ state.init = function () {
       state.slider_current.text(`${state.slider.val()} customers`);
     }
 
-    state.slider_heading.text(
-      `At $${state.current_price} per month, you would need ${state.current_customers} monthly subscribers.`
+    state.slider_heading.html(
+      `At <span class="accented">$${state.current_price}</span> per month, you would need <span class="accented">${state.current_customers}</span> monthly subscribers.`
     );
   };
 
@@ -93,7 +93,7 @@ state.init = function () {
 
     $(`.bar`).height("0px");
     state.breakdown.forEach((item, index) => {
-      // $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+      // This resource was used for this animation: https://stackoverflow.com/questions/2540277/jquery-counter-to-count-up-to-a-target-number
       $({ counter: 0 }).animate(
         { counter: item + 1 },
         {
@@ -141,15 +141,15 @@ state.init = function () {
         state.current_customers = Math.ceil(
           state.target_revenue / state.current_price / state.time_frame
         );
-        state.slider_heading.text(
-          `At $${state.current_price} per month, you would need ${state.current_customers} monthly subscribers.`
+        state.slider_heading.html(
+          `At <span class="accented">$${state.current_price}</span> per month, you would need <span class="accented">${state.current_customers}</span> monthly subscribers.`
         );
       } else {
         state.current_customers = Math.ceil(
           state.target_revenue / state.current_price
         );
-        state.slider_heading.text(
-          `At $${state.current_price} per item, you would need ${state.current_customers} customers.`
+        state.slider_heading.html(
+          `At <span class="accented">$${state.current_price}</span> per item, you would need <span class="accented">${state.current_customers}</span> customers.`
         );
       }
     } else {
@@ -159,15 +159,15 @@ state.init = function () {
         state.current_price = parseFloat(
           state.target_revenue / state.current_customers / state.time_frame
         ).toFixed(2);
-        state.slider_heading.text(
-          `Having ${state.current_customers} monthly subcribers, you would need to charge $${state.current_price} per month.`
+        state.slider_heading.html(
+          `Having <span class="accented"> ${state.current_customers} </span> monthly subcribers, you would need to charge <span class="accented">$${state.current_price}</span> per month.`
         );
       } else {
         state.current_price = parseFloat(
           state.target_revenue / state.current_customers
         ).toFixed(2);
-        state.slider_heading.text(
-          `Having ${state.current_customers} customers, you would need to charge $${state.current_price} per item.`
+        state.slider_heading.html(
+          `Having <span class="accented">${state.current_customers}</span> customers, you would need to charge <span class="accented">$${state.current_price}</span> per item.`
         );
       }
     }
