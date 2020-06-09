@@ -7,7 +7,7 @@ state.init = function () {
   state.slider_min = $(".slider .min");
   state.slider_max = $(".slider .max");
   state.slider_type = $("input[type=radio][name=slider-type]");
-  state.slider_heading = $(".slider h2");
+  state.slider_heading = $(".summary p");
   state.slider_current = $(".slider .current-value");
 
   state.input_revenue = $("#target-revenue");
@@ -46,12 +46,14 @@ state.init = function () {
         state.target_revenue / state.min_price / state.time_frame
       );
     } else {
-      state.min_customers = state.target_revenue / state.max_price;
-      state.max_customers = state.target_revenue / state.min_price;
+      state.min_customers = Math.ceil(state.target_revenue / state.max_price);
+      state.max_customers = Math.ceil(state.target_revenue / state.min_price);
     }
 
     state.current_price = (state.max_price + state.min_price) / 2;
-    state.current_customers = (state.max_customers + state.min_customers) / 2;
+    state.current_customers = Math.ceil(
+      (state.max_customers + state.min_customers) / 2
+    );
   };
 
   state.setSlider = function (box) {
@@ -74,6 +76,10 @@ state.init = function () {
       state.slider.val(state.current_customers);
       state.slider_current.text(`${state.slider.val()} customers`);
     }
+
+    state.slider_heading.text(
+      `At $${state.current_price} per month, you would need ${state.current_customers} monthly subscribers.`
+    );
   };
 
   state.form.submit(function (e) {
@@ -85,15 +91,32 @@ state.init = function () {
 
     $("#customers-radio").prop("checked", true);
 
+    $(`.bar`).height("0px");
     state.breakdown.forEach((item, index) => {
-      $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+      // $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+      $({ counter: 0 }).animate(
+        { counter: item + 1 },
+        {
+          duration: 2000,
+          easing: "swing",
+          step: function () {
+            $(`#period-${index + 1} .revenue`).text(
+              `$${Math.floor(this.counter)}`
+            );
+          },
+          complete: function () {
+            $(`#period-${index + 1} .revenue`).text(`$${Math.ceil(item)}`);
+          },
+        }
+      );
+
       $(`#bar-${index + 1}`).animate(
         {
           height: `${
             ((item * ((index + 1) / 6)) / state.target_revenue) * 100
           }%`,
         },
-        800
+        2000
       );
       // $(`#bar-${index + 1}`).height(
       //   `${((item * ((index + 1) / 6)) / state.target_revenue) * 100}%`
@@ -130,8 +153,8 @@ state.init = function () {
         );
       }
     } else {
-      state.slider_current.text(`${state.slider.val()} customers`);
-      state.current_customers = state.slider.val();
+      state.slider_current.text(`${Math.ceil(state.slider.val())} customers`);
+      state.current_customers = Math.ceil(state.slider.val());
       if (state.subscription == "true") {
         state.current_price = parseFloat(
           state.target_revenue / state.current_customers / state.time_frame

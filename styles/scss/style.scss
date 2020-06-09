@@ -89,7 +89,7 @@ form {
 section {
   display: none;
   margin-top: 20rem;
-  margin-bottom: 20rem;
+  padding: 2.5rem 0;
   width: 100%;
   option {
     text-align: center;
@@ -142,6 +142,13 @@ section {
     align-items: center;
     fieldset {
       width: 100%;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin: 0 5rem 0 1rem;
+      }
     }
     input[type="range"] {
       height: 1rem;
@@ -179,23 +186,44 @@ section {
     text-align: center;
   }
 
-  .slider,
-  .graph {
-    margin-top: 4rem;
+  .table,
+  .summary {
+    margin-top: 10rem;
   }
 
   .graph {
-    background-color: $secondary-dark;
-    height: 500px;
+    height: 400px;
     width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .side,
+  .bottom {
+    color: $primary-light;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .side {
+    writing-mode: sideways-lr;
+    width: 3rem;
+    height: 100%;
+  }
+
+  .bottom {
+    width: calc(100% - 3rem);
+    margin-top: 1rem;
+    margin-left: 3rem;
   }
 
   .graph-contents {
-    width: 90%;
-    margin: 2rem auto;
-    height: calc(100% - 4rem);
+    background-color: $secondary-dark;
+    width: calc(100% - 3rem);
+    padding: 2rem 1rem;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-end;
   }
 
@@ -203,6 +231,6 @@ section {
     width: 10%;
     height: 1%;
     background-color: $accent-color;
-    transition: 2s ease-in-out;
+    // transition: 2s ease-in-out;
   }
 }
