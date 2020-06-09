@@ -94,7 +94,7 @@ form {
 
 section {
   display: none;
-  margin-top: 20rem;
+  margin-top: 2rem;
   padding: 2.5rem 0;
   width: 100%;
   option {
@@ -281,6 +281,189 @@ section {
 
   td,
   tr {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .wrapper {
+    width: 900px;
+  }
+  h1 {
+    max-width: 100%;
+    font-size: 5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+  header {
+    padding-top: 5rem;
+    text-align: center;
+    height: 100%;
+  }
+  header form .inputs fieldset {
+    display: flex;
+    flex-direction: column;
+    input {
+      text-align: center;
+    }
+    input,
+    select {
+      margin-top: 2rem;
+    }
+  }
+
+  header label {
+    font-size: 2.5rem;
+  }
+
+  section .graph {
+    height: 400px;
+  }
+
+  section .graph,
+  section .table,
+  section .summary,
+  section .slider {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 7.5rem;
+  }
+
+  section .slider {
+    order: 2;
+
+    fieldset {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  section .summary {
+    order: 3;
+  }
+
+  section .table,
+  .summary {
+    margin-top: 7.5rem;
+  }
+
+  section .side,
+  section .bottom {
+    font-size: 1.5rem;
+  }
+
+  section .slider fieldset label {
+    font-size: 1.4rem;
+  }
+
+  td,
+  tr {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 970px) {
+  .wrapper {
+    width: 700px;
+  }
+}
+
+@media (max-width: 720px) {
+  .wrapper {
+    width: 600px;
+  }
+}
+
+@media (max-width: 620px) {
+  .wrapper {
+    width: 500px;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  header label {
+    font-size: 2rem;
+  }
+
+  section .graph {
+    height: 320px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrapper {
+    width: 400px;
+  }
+
+  header {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  header form select,
+  header form input {
+    margin-left: 0;
+  }
+
+  header form input {
+    padding: 0;
+    width: 90%;
+  }
+
+  section .graph {
+    height: 250px;
+  }
+
+  section .graph,
+  section .table,
+  section .summary,
+  section .slider {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+
+  section .slider fieldset {
+    width: 400px;
+    input {
+      margin-right: 2rem;
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  .wrapper {
+    width: 350px;
+  }
+}
+
+@media (max-width: 359px) {
+  .wrapper {
+    width: 300px;
+  }
+
+  section form input {
+    font-size: 1.5rem;
+  }
+
+  section form select {
+    margin-right: 0;
     font-size: 1.5rem;
   }
 }
